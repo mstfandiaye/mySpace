@@ -1,10 +1,14 @@
 const express = require('express');
 const path = require('path');
+var bodyParser = require('body-parser');
 const port = 3000;
 const app = express();
 
 
 app.use(express.static(path.join(__dirname, 'static')));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json()) ;
+
 app.get('/static', (req, res) => {
     res.sendFile(path.join(__dirname, 'static', 'login.html'));
 });
