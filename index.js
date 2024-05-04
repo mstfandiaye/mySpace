@@ -1,6 +1,13 @@
 const express = require('express');
-const app = express();
+const path = require('path');
 const port = 3000;
+const app = express();
+
+
+app.use(express.static(path.join(__dirname, 'static')));
+app.get('/static', (req, res) => {
+    res.sendFile(path.join(__dirname, 'static', 'login.html'));
+});
 
 app.get('/', (req, res) => {
     const HTMLcontent = `
@@ -22,9 +29,12 @@ app.get('/', (req, res) => {
             'key', 'value'
         }
     `
-    res.send(JsonContent) ;
+    res.status(201).send(JsonContent);
+    res.set('content-type', 'application/json')
+    //res.send(JsonContent) ;
 });
 
+//listener
 app.listen(port, () => {
     console.log(`on port ${port}`);
 });
