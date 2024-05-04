@@ -1,0 +1,13 @@
+{
+  "name": "myspace",
+  "version": "1.0.0",
+  "main": "index.js", 
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "dev": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "myspace app allows users to log in and save information in a sqlite db (name, fisrt name, login, passeword)"
+}
