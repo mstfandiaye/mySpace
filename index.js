@@ -9,8 +9,12 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json()) ;
 
-app.get('/static', (req, res) => {
-    res.sendFile(path.join(__dirname, 'static', 'login.html'));
+app.get('/static/:filename', (req, res) => {
+    console.log('params value', req.params);
+    console.log('query value', req.query);
+    console.log('query value', req.body);
+    console.log('headers value', req.headers);
+    res.sendFile(path.join(__dirname, 'static', req.params.filename));
 });
 
 app.get('/', (req, res) => {
