@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "myspace app allows users to log in and save information in a sqlite db (name, fisrt name, login, passeword)",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.19.2"
   }
 }
