@@ -1,9 +1,17 @@
 // import express
 const express = require('express') ;
+//create path
+const path =require('path') ;
 // define app
 const app = express() ;
 // define the port for listening
 const port = 3000 ;
+//path usage
+app.use(express.static(path.join(__dirname, 'static'))) ;
+
+app.get('/static', (req, res) => {
+    res.sendFile(path.join(__dirname, 'static', 'login.html')) ;
+});
 
 //middle were
 //getting requeste
@@ -31,7 +39,7 @@ app.get('/', (req, res)=> {
     `
     res.set('content-type', 'applicatiion/Json') ;
     res.statusCode = 201;
-    res.send(conentJson) ;
+    //res.send(conentJson) ;
 })
 
 //listening requeste
