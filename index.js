@@ -18,11 +18,18 @@ app.use(bodyParser.json()) ;
 //     res.sendFile(path.join(__dirname, 'static', req.params.filename));
 // });
 
-app.get('/user', (req, res) => {
-    var usersJSON = [];
-    db.each("SELECT  * FROM users", (err,row)=>{
-        console.log("row", row) ;
-        usersJSON.push(row) ;
+function callBackGetUsers(req, res, rows){
+    res.set('content-type', 'application/json');
+    res.set('server', 'mySpace server');
+    res.status(200).send(rows);
+}
+
+app.get('/users', (req, res) => {
+    //var usersJSON = [];
+    db.all("SELECT  * FROM users", (err,rows)=>{
+        console.log("rows", rows) ;
+        //usersJSON.push(rows) ;
+        callBackGetUsers(req, res, rows)
     })
     /*const HTMLcontent = `
     <!DOCTYPE html>
@@ -44,9 +51,9 @@ app.get('/user', (req, res) => {
         //}
     //`*/
     
-    res.set('content-type', 'application/json');
-    res.set('server', 'mySpace server');
-    res.status(200).send(usersJSON);
+    // res.set('content-type', 'application/json');
+    // res.set('server', 'mySpace server');
+    // res.status(200).send(usersJSON);
     //res.send(JsonContent) ;
 });
 app.post('/users', (req, res)=>{
